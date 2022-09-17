@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs UI</title>
+
+    <!-- Normalize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="main">
+        <div class="tabs">
+            <div class="tab__item active">
+                <i class="fa-solid fa-code"></i>
+                React
+            </div>
+            <div class="tab__item">
+                <i class="fa-solid fa-gear"></i>
+                Angular
+            </div>
+            <div class="tab__item">
+                <i class="fa-solid fa-circle-plus"></i>
+                Ember
+            </div>
+            <div class="tab__item">
+                <i class="fa-solid fa-pen-nib"></i>
+                Design
+            </div>
+            <div class="tab__line"></div>
+        </div>
+    
+        <div class="pans">
+            <div class="pan__item active">
+                <h1 class="pan__title">React</h1>
+                <p class="pan__content">
+                    React (also known as React.js or ReactJS) is a free and open-source front-end JavaScript library for building user interfaces based on UI components. It is maintained by Meta (formerly Facebook) and a community of individual developers and companies. React can be used as a base in the development of single-page, mobile, or server-rendered applications with frameworks like Next.js. However, React is only concerned with state management and rendering that state to the DOM, so creating React applications usually requires the use of additional libraries for routing, as well as certain client-side functionality.
+                </p>
+            </div>
+            <div class="pan__item">
+                <h1 class="pan__title">Angular</h1>
+                <p class="pan__content">
+                    Angular (commonly referred to as "Angular 2+") is a TypeScript-based free and open-source web application framework led by the Angular Team at Google and by a community of individuals and corporations. Angular is a complete rewrite from the same team that built AngularJS.
+                </p>
+            </div>
+            <div class="pan__item">
+                <h1 class="pan__title">Ember</h1>
+                <p class="pan__content">
+                    Ember.js is an open-source JavaScript web framework that utilizes a component-service pattern. It allows developers to create scalable single-page web applications by incorporating common idioms, best practices, and patterns from other single-page-app ecosystem patterns into the framework.
+                </p>
+            </div>
+            <div class="pan__item">
+                <h1 class="pan__title">Design</h1>
+                <p class="pan__content">
+                    A design is a plan or specification for the construction of an object or system or for the implementation of an activity or process or the result of that plan or specification in the form of a prototype, product, or process. The verb to design expresses the process of developing a design. In some cases, the direct construction of an object without an explicit prior plan (such as in craftwork, some engineering, coding, and graphic design) may also be considered to be a design activity. The design usually has to satisfy certain goals and constraints; may take into account aesthetic, functional, economic, or socio-political considerations; and is expected to interact with a certain environment. Typical examples of designs include architectural and engineering drawings, circuit diagrams, sewing patterns and less tangible artefacts such as business process models.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const $ = document.querySelector.bind(document);
+        const $$ = document.querySelectorAll.bind(document);
+
+        const pans = $$('.pan__item');
+        const line = $('.tab__line');
+
+        tabLine();
+
+        $$('.tab__item').forEach((tab, index) => {
+            tab.onclick = () => {
+                const pan = pans[index];
+
+                $('.tab__item.active').classList.remove('active');
+                $('.pan__item.active').classList.remove('active');
+
+                tab.classList.add('active');
+                pan.classList.add('active');
+
+                tabLine();
+            };
+        });
+
+        function tabLine () {
+            const tabActived = $('.tab__item.active');
+
+            line.style.left = tabActived.offsetLeft + 'px';
+            line.style.width = tabActived.offsetWidth + 'px';
+        }
+    </script>
+</body>
+</html>
